@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SudokuValidatorApp</string>
+
+    <string name="validate_button_label">Validate</string>
+    <string name="valid_board_button_label">Valid Board</string>
+    <string name="invalid_board_button_label">Invalid Board</string>
+
+    <string name="invalid_sudoku_board_file_name">invalidSudokuBoard.json</string>
+    <string name="valid_sudoku_board_file_name">validSudokuBoard.json</string>
+
+    <string name="valid_message">Board is valid.</string>
+    <string name="invalid_message">Board is invalid.</string>
+</resources>
