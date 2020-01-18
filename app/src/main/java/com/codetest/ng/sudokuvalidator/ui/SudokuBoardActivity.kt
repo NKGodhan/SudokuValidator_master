@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.sudoku_board_activity.*
 
 class SudokuBoardActivity : AppCompatActivity() {
 
-    private lateinit var boardDataToValidate: Array<CharArray>
+    private var boardDataToValidate: Array<IntArray> = Array(9) { IntArray(9) }
 
     private lateinit var viewModel: SudokuValidatorViewModel
 
@@ -40,22 +40,20 @@ class SudokuBoardActivity : AppCompatActivity() {
         viewModel.boardInputData.observe(this, Observer {
             sudokuGridView.setGameInput(it)
 
-            boardDataToValidate = Array(9) { CharArray(9) }
-
             var first: Int
             var last = 8
             val limit = 8
             var inputArrayIndex = 0
-            var charArray = CharArray(9)
+            var intArray = IntArray(9)
             for (itr in it.indices) {
-                charArray[limit - (last - itr)] = it[itr].toChar()
+                intArray[limit - (last - itr)] = it[itr]
 
                 if ((last - itr) == 0) {
-                    boardDataToValidate.set(inputArrayIndex, charArray)
+                    boardDataToValidate.set(inputArrayIndex, intArray)
                     first = itr + 1
                     last = first + limit
                     inputArrayIndex++
-                    charArray = CharArray(9)
+                    intArray = IntArray(9)
                 }
             }
         })
@@ -66,6 +64,10 @@ class SudokuBoardActivity : AppCompatActivity() {
      */
     private fun clickEvents() {
         validateButton.setOnClickListener {
+            if (boardDataToValidate.isNullOrEmpty()) {
+                message.text = getText(R.string.no_board_loaded_to_verify_message)
+                return@setOnClickListener
+            }
             viewModel.provideValidationMessage(boardDataToValidate)
         }
 

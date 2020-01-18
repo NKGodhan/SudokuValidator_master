@@ -22,7 +22,7 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
     /**
      * Calls the validate operation and sends the message accordingly
      */
-    fun provideValidationMessage(arrayToValidate: Array<CharArray>) {
+    fun provideValidationMessage(arrayToValidate: Array<IntArray>) {
 
         if (arrayToValidate.isNullOrEmpty()) {
 //            clickValidate.postValue(true)
@@ -75,8 +75,8 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
 
     //-----------------------------
     // Main business logic
-    private fun isValidSudoku(board: Array<CharArray>?): Boolean {
-        if (board.isNullOrEmpty())
+    private fun isValidSudoku(inputBoard: Array<IntArray>?): Boolean {
+        if (inputBoard.isNullOrEmpty())
             return false
 
         val rowsData = arrayOfNulls<HashMap<Int, Int>>(9)
@@ -91,8 +91,8 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
         var number: Int
         for (rowIndex in 0..8) {
             for (colIndex in 0..8) {
-                val cellNumber = board[rowIndex][colIndex]
-                if (board[rowIndex][colIndex] != '0') {
+                val cellNumber = inputBoard[rowIndex][colIndex]
+                if (inputBoard[rowIndex][colIndex] != 0) {
                     number = cellNumber.toInt()
                     val boxIndex = rowIndex / 3 * 3 + colIndex / 3
                     rowsData[rowIndex]?.put(number, getOrDefault(rowsData[rowIndex], number) + 1)
