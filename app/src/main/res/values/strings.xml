@@ -10,5 +10,6 @@
 
     <string name="valid_message">Board is valid.</string>
     <string name="invalid_message">Board is invalid.</string>
-    <string name="no_board_loaded_to_verify_message">No board loaded to verify..</string>
+    <string name="no_board_loaded_to_verify_message">No board loaded to validate..</string>
+    <string name="validate_indicator_message">Press Validate button to check if board is valid or not.</string>
 </resources>
