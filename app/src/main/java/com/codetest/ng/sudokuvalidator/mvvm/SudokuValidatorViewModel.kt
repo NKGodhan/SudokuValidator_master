@@ -136,7 +136,7 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
 
     }
 
-    fun setDataInTheBoard(fileResource: Int) {
+    private fun setDataInTheBoard(fileResource: Int) {
         val stringJsonArray =
             jsonArrayToArray(
                 getSudokuBoard(
@@ -164,6 +164,43 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
         }
 
         boardInputData.postValue(toIntArray(actualInputData))
+    }
 
+    fun onValidLoadClick() {
+        validationMessage.postValue(context.getString(R.string.validate_indicator_message))
+        setDataInTheBoard(R.string.valid_sudoku_board_file_name)
+    }
+
+    fun onInvalidLoadClick() {
+        validationMessage.postValue(context.getString(R.string.validate_indicator_message))
+        setDataInTheBoard(R.string.invalid_sudoku_board_file_name)
+    }
+
+    fun onValidateClick() {
+        if (boardInputData.value != null) {
+            val boardDataToValidate: Array<IntArray> = Array(9) { IntArray(9) }
+
+            var first: Int
+            var last = 8
+            val limit = 8
+            var inputArrayIndex = 0
+            var intArray = IntArray(9)
+            val inputData = boardInputData.value as IntArray
+            for (itr in inputData.indices) {
+                intArray[limit - (last - itr)] = inputData[itr]
+
+                if ((last - itr) == 0) {
+                    boardDataToValidate[inputArrayIndex] = intArray
+                    first = itr + 1
+                    last = first + limit
+                    inputArrayIndex++
+                    intArray = IntArray(9)
+                }
+            }
+
+            provideValidationMessage(boardDataToValidate)
+        } else {
+            validationMessage.postValue(context.getString(R.string.no_board_loaded_to_verify_message))
+        }
     }
 }

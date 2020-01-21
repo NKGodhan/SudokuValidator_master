@@ -8,7 +8,9 @@ import android.view.View
 import android.graphics.Paint.Align
 import android.util.AttributeSet
 
-
+/***
+ * Custom view class to create Sudoku grid structure
+ */
 class SudokuGridView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
     private val gridMargin = 5
     private val gridDimension = 9
