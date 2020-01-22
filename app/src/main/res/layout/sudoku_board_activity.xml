@@ -8,13 +8,13 @@
 
         <variable
             name="viewModel"
-            type="com.codetest.ng.sudokuvalidator.mvvm.SudokuValidatorViewModel" />
+            type="com.codetest.ng.sudokuvalidator.viewmodel.SudokuValidatorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.SudokuBoardActivity">
+        tools:context=".view.SudokuBoardActivity">
 
         <Button
             android:id="@+id/loadValidBoard"
@@ -49,7 +49,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.codetest.ng.sudokuvalidator.ui.SudokuGridView
+        <com.codetest.ng.sudokuvalidator.view.SudokuGridView
             android:id="@+id/sudokuGridView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.codetest.ng.sudokuvalidator.ui
+package com.codetest.ng.sudokuvalidator.view
 
 import android.content.Context
 import android.graphics.Canvas

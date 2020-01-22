@@ -1,4 +1,4 @@
-package com.codetest.ng.sudokuvalidator.mvvm
+package com.codetest.ng.sudokuvalidator.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -16,7 +16,6 @@ import org.json.JSONObject
 class SudokuValidatorViewModel(application: Application) : AndroidViewModel(application) {
     private val context = getApplication<Application>().applicationContext
     val validationMessage: MutableLiveData<String> = MutableLiveData()
-    val clickValidate: MutableLiveData<Boolean> = MutableLiveData()
     val boardInputData: MutableLiveData<IntArray> = MutableLiveData()
 
     fun onValidLoadClick() {
@@ -69,10 +68,8 @@ class SudokuValidatorViewModel(application: Application) : AndroidViewModel(appl
         }
 
         if (isValidSudoku(arrayToValidate)) {
-            clickValidate.postValue(true)
             validationMessage.postValue(context.getString(R.string.valid_message))
         } else {
-            clickValidate.postValue(false)
             validationMessage.postValue(context.getString(R.string.invalid_message))
         }
     }
