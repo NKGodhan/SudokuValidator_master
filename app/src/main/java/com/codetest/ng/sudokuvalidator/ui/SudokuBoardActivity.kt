@@ -13,15 +13,17 @@ import kotlinx.android.synthetic.main.sudoku_board_activity.*
 
 class SudokuBoardActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: SudokuValidatorViewModel
-    private lateinit var binding: SudokuBoardActivityBinding
+    private val viewModel by lazy {
+        ViewModelProviders.of(this).get(SudokuValidatorViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.sudoku_board_activity)
+        val binding: SudokuBoardActivityBinding =
+            DataBindingUtil.setContentView(this, R.layout.sudoku_board_activity)
 
-        viewModel = ViewModelProviders.of(this).get(SudokuValidatorViewModel::class.java)
+        binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
     }
